@@ -1,0 +1,23 @@
+### 🧾 GET /log/all
+GET http://mypenm0iesvr01/cps-api/api/log/all
+
+### 🏭 GET /log/plant
+GET http://mypenm0iesvr01/cps-api/api/log/plant?plant=PEN001
+
+### 📊 GET /log/status
+GET http://mypenm0iesvr01/cps-api/api/log/status?status=Running
+
+### ❌ GET /log/status/cancel
+GET http://mypenm0iesvr01/cps-api/api/log/status/cancel?serialNumber=STX123456
+
+### 🧍 GET /log/customerId
+GET http://mypenm0iesvr01/cps-api/api/log/customerId?customerId=1
+
+### 🧩 GET /log/crateId
+GET http://mypenm0iesvr01/cps-api/api/log/crateId?crateId=C123
+
+### 🔢 GET /log/serialNumber
+GET http://mypenm0iesvr01/cps-api/api/log/serialNumber?serialNumber=STX123456
+
+### 🕓 GET /log/que
+GET http://mypenm0iesvr01/cps-api/api/log/que

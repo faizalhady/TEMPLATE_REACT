@@ -1,0 +1,86 @@
+# ----------------------------
+# 📦 Node / Vite / React setup
+# ----------------------------
+node_modules/
+dist/
+build/
+.vite/
+.vite-inspect/
+coverage/
+*.tsbuildinfo
+*.log
+
+# ----------------------------
+# ⚙️ Environment files
+# ----------------------------
+.env
+.env.*
+!.env.example
+
+# ----------------------------
+# 🧠 IDE / Editor junk
+# ----------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# 🧰 TypeScript / Lint cache
+# ----------------------------
+.eslintcache
+.tscache/
+.cache/
+.prettier-cache/
+stylelintcache/
+
+# ----------------------------
+# 📁 Local dev / test outputs
+# ----------------------------
+*.local
+*.test.*
+temp/
+tmp/
+*.bak
+*.orig
+*.rej
+
+# ----------------------------
+# 🔐 Auth / secrets
+# ----------------------------
+*.pem
+*.key
+*.crt
+*.pfx
+
+# ----------------------------
+# 🪄 Optional: backend / Express support
+# ----------------------------
+/backend/node_modules/
+/backend/dist/
+/backend/.env
+/backend/coverage/
+
+# ----------------------------
+# 🧱 Logs
+# ----------------------------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ----------------------------
+# ⚡ OS-specific / system
+# ----------------------------
+*.lock-wscript
+ehthumbs.db
+Icon?
+desktop.ini
+
+# ----------------------------
+# 🧩 VS Code workspace backups
+# ----------------------------
+*.code-workspace
+.history/

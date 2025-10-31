@@ -1,0 +1,5 @@
+export const IPK_CONSTANTS = {
+    RUNTIME_GUIDE_HOURS: 6,
+    VARIATION_BUFFER_MINUTES: 5,
+    ROUNDING_MODE: "CEIL",
+} as const;

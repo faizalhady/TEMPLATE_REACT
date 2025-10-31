@@ -1,0 +1,100 @@
+
+
+### 🧾 GET /data/customer
+GET http://mypenm0iesvr01/cps-api/api/data/customer?id=0
+
+### 🏭 GET /data/plant
+GET http://mypenm0iesvr01/cps-api/api/data/plant
+
+### 🏷️ GET /data/vendor
+GET http://mypenm0iesvr01/cps-api/api/data/vendor?id=1
+
+### 👥 GET /data/user
+GET http://mypenm0iesvr01/cps-api/api/data/user?role=admin
+
+### ➕ POST /data/new/user
+POST http://mypenm0iesvr01/cps-api/api/data/new/user
+Content-Type: application/json
+
+[
+  {
+    "userId": "U001",
+    "customerId": 1,
+    "userNtid": "faiz",
+    "userName": "Syed Faiz Alhady",
+    "userRole": "admin",
+    "userUniqueCode": "IE-DEV-01",
+    "userEmail": "faiz@jabil.com",
+    "userAddedBy": "system",
+    "userAddedWhen": "2025-10-22T10:00:00",
+    "userIsActive": 1
+  }
+]
+
+### 🧩 PUT /data/update/user
+PUT http://mypenm0iesvr01/cps-api/api/data/update/user
+Content-Type: application/json
+
+{
+  "userId": "U001",
+  "customerId": 1,
+  "userNtid": "faiz",
+  "userName": "Syed Faiz",
+  "userRole": "admin",
+  "userUniqueCode": "IE-DEV-01",
+  "userEmail": "faiz@jabil.com",
+  "userAddedBy": "system",
+  "userAddedWhen": "2025-10-22T10:00:00",
+  "userIsActive": 1
+}
+
+### 🆕 POST /data/new/area
+POST http://mypenm0iesvr01/cps-api/api/data/new/area
+Content-Type: application/json
+
+{
+  "areaGuid": "A1B2C3D4",
+  "plant": "PEN001",
+  "areaId": "A01",
+  "areaName": "Area 1",
+  "cratingId": "C123",
+  "areaPic": null,
+  "areaStatus": 1,
+  "addDatetime": "2025-10-22T10:00:00",
+  "connectionId": "XYZ987"
+}
+
+### ⚙️ PUT /data/update/setting/area
+PUT http://mypenm0iesvr01/cps-api/api/data/update/setting/area
+Content-Type: application/json
+
+{
+  "areaGuid": "A1B2C3D4",
+  "plant": "PEN001",
+  "areaId": "A01",
+  "areaName": "Area Updated",
+  "cratingId": "C123",
+  "areaPic": null,
+  "areaStatus": 1,
+  "addDatetime": "2025-10-22T10:00:00",
+  "connectionId": "XYZ987"
+}
+
+### 🗑️ DELETE /data/delete/area
+DELETE http://mypenm0iesvr01/cps-api/api/data/delete/area?areaGuid=A1B2C3D4
+
+### 🧪 POST /data/getTest/area
+POST http://mypenm0iesvr01/cps-api/api/data/getTest/area
+Content-Type: application/json
+
+{
+  "areaGuid": "TEST123",
+  "plant": "PEN001",
+  "areaId": "T01",
+  "areaName": "Test Area",
+  "cratingId": "TESTC",
+  "areaPic": null,
+  "areaStatus": 1,
+  "addDatetime": "2025-10-22T10:00:00",
+  "connectionId": "XYZ987"
+}

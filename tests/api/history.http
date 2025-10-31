@@ -1,0 +1,14 @@
+### 🏭 GET all history
+GET http://mypenm0iesvr01/cps-api/api/history/all
+
+### 🏭 GET by plant
+GET http://mypenm0iesvr01/cps-api/api/history/plant?plant=PEN001
+
+### 🏭 GET by area
+GET http://mypenm0iesvr01/cps-api/api/history/area?areaGuid=A1B2C3D4
+
+### 🏭 GET by customerId
+GET http://mypenm0iesvr01/cps-api/api/history/customerId?customerId=1
+
+### 🏭 GET by model
+GET http://mypenm0iesvr01/cps-api/api/history/model?model=ABC123

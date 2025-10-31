@@ -1,0 +1,2 @@
+### ⚙️ GET /service/status
+GET http://mypenm0iesvr01/cps-api/api/service/status?serviceName=eST1C_LogExtractor

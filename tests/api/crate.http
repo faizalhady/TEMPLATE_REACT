@@ -1,0 +1,65 @@
+### 📦 POST /crate/que
+POST http://mypenm0iesvr01/cps-api/api/crate/que?serialNumber=STX123456
+
+
+### 🏗️ POST /crate/staging
+POST http://mypenm0iesvr01/cps-api/api/crate/staging?serialNumber=STX123456
+
+
+### 🧱 POST /crate/crating
+POST http://mypenm0iesvr01/cps-api/api/crate/crating?serialNumber=STX123456
+Content-Type: application/json
+
+{
+  "areaGuid": "A1B2C3D4",
+  "plant": "PEN001",
+  "areaId": "A01",
+  "areaName": "Crate Area 1",
+  "cratingId": "C123",
+  "areaPic": null,
+  "areaStatus": 1,
+  "addDatetime": "2025-10-22T10:00:00",
+  "connectionId": "ABC123"
+}
+
+
+### ❌ POST /crate/cancel
+POST http://mypenm0iesvr01/cps-api/api/crate/cancel
+Content-Type: application/json
+
+{
+  "logId": "L001",
+  "plant": "PEN001",
+  "cratingId": "C123",
+  "serialNumber": "STX123456",
+  "customerId": 5,
+  "model": "ABC",
+  "ntid": "faiz",
+  "name": "Faiz",
+  "customer": "Jabil",
+  "division": "IE",
+  "status": "Cancelled",
+  "area": "Crate Area 1",
+  "logDatetime": "2025-10-22T10:05:00"
+}
+
+
+### 🗺️ GET /crate/area
+GET http://mypenm0iesvr01/cps-api/api/crate/area?plant=PEN001
+
+
+### ✏️ PUT /crate/update/area
+PUT http://mypenm0iesvr01/cps-api/api/crate/update/area?type=manual
+Content-Type: application/json
+
+{
+  "areaGuid": "A1B2C3D4",
+  "plant": "PEN001",
+  "areaId": "A01",
+  "areaName": "Crate Area Updated",
+  "cratingId": "C123",
+  "areaPic": null,
+  "areaStatus": 1,
+  "addDatetime": "2025-10-22T10:00:00",
+  "connectionId": "ABC123"
+}

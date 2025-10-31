@@ -1,0 +1,16 @@
+### 🔐 POST login
+POST http://mypenm0iesvr01/cps-api/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "faiz",
+  "password": "test123",
+  "uniqueCode": "DEV01",
+  "type": "manual"
+}
+
+### 🔐 GET device
+GET http://mypenm0iesvr01/cps-api/api/auth/device?serialNumber=ABC123
+
+### 🔐 GET user
+GET http://mypenm0iesvr01/cps-api/api/auth/user?ntid=faiz
