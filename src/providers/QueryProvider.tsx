@@ -1,3 +1,4 @@
+// src/providers/QueryProvider.tsx
 import React, { useEffect } from "react"
 import {
   QueryClient,
@@ -8,17 +9,16 @@ import {
   type QueryCacheNotifyEvent,
 } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
-import { getUserFriendlyErrorTitle } from "@/lib/getErrorMessage"
 import { toast } from "sonner"
 import axios from "axios"
+import { getQueryMessage } from "@/lib/getQueryMessage"
 
 /* -------------------------------------------------
-   Helper: Log in Dev Only
+   Developer Logger (only in dev)
 ---------------------------------------------------*/
 const devLog = (...args: unknown[]) => {
   if (import.meta.env.MODE === "development") console.log("[QueryProvider]", ...args)
 }
-
 
 /* -------------------------------------------------
    Deduped Toast Notifications
@@ -31,12 +31,11 @@ function showErrorToast(title: string, message: string) {
 
   toast.error(title, { description: message })
 
-  // Clear throttle after 4s (to allow re-toast after cooldown)
   setTimeout(() => errorThrottle.delete(key), 4000)
 }
 
 /* -------------------------------------------------
-   Helper: Extract readable error message
+   Helper — Extract readable error message
 ---------------------------------------------------*/
 function extractErrorMessage(error: unknown): string {
   if (axios.isAxiosError(error)) {
@@ -49,13 +48,13 @@ function extractErrorMessage(error: unknown): string {
 }
 
 /* -------------------------------------------------
-   Global QueryClient
+   Global QueryClient Setup
 ---------------------------------------------------*/
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
       const message = extractErrorMessage(error)
-      const title = getUserFriendlyErrorTitle(query.queryKey)
+      const title = getQueryMessage(query.queryKey, "error")
       showErrorToast(title, message)
       console.error("❌ Query Error:", query.queryKey, message)
     },
@@ -63,9 +62,14 @@ export const queryClient = new QueryClient({
   mutationCache: new MutationCache({
     onError: (error, _vars, _ctx, mutation) => {
       const message = extractErrorMessage(error)
-      const title = getUserFriendlyErrorTitle(mutation.options.mutationKey)
+      const title = getQueryMessage(mutation.options.mutationKey, "error")
       showErrorToast(title, message)
       console.error("❌ Mutation Error:", mutation.options.mutationKey, message)
+    },
+    onSuccess: (_data, _vars, _ctx, mutation) => {
+      const title = getQueryMessage(mutation.options.mutationKey, "success")
+      toast.success(title)
+      devLog("✅ Mutation Success:", mutation.options.mutationKey)
     },
   }),
   defaultOptions: {
@@ -77,17 +81,14 @@ export const queryClient = new QueryClient({
   },
 })
 
-
-
 /* -------------------------------------------------
-   Dev Cache Logger — Realtime State Monitor (v5-compatible)
+   Dev Cache Logger — Realtime State Monitor
 ---------------------------------------------------*/
 function useQueryCacheLogger() {
   useEffect(() => {
     if (import.meta.env.MODE !== "development") return
 
     const unsubscribe = queryClient.getQueryCache().subscribe((event: QueryCacheNotifyEvent) => {
-      // The v5 event.type system is now "added" | "removed" | "updated" | ...
       if (event.type === "updated" && (event as any).query) {
         const query = (event as any).query as Query
         const status = query.state.status
@@ -116,7 +117,7 @@ function useQueryCacheLogger() {
    Provider Wrapper
 ---------------------------------------------------*/
 export function QueryProvider({ children }: { children: React.ReactNode }) {
-  useQueryCacheLogger() // ✅ dev-only logging
+  useQueryCacheLogger()
 
   return (
     <QueryClientProvider client={queryClient}>
