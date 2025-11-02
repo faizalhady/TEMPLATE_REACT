@@ -35,7 +35,7 @@ const navStructure = [
     items: [
       // { title: "Dashboard", path: "/", icon: Home },
       { title: "Basic IPK Calculation", path: "/", icon: Calculator },
-      { title: "Basic ", path: "/sim", icon: Calculator },
+      { title: "Example Api", path: "/example", icon: Calculator },
     ],
 
   },
