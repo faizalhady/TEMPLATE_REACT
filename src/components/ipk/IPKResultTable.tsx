@@ -1,4 +1,4 @@
-import { IPKResult } from "@/utils/ipkCalculator";
+import { type IPKResult } from "@/utils/ipkCalculator";
 
 interface Props {
     data: IPKResult[];

@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import NotFoundPage from "@/pages/error/NotFoundPage"
 import { ExampleRoute } from "./routes/ExampleRoute"
 import { DashboardRoute } from "./routes/DashboardRoute"
+import { IPKGuidelineRoute } from "./routes/IPKGuidelineRoute"
 
 // Router setup
 const router = createBrowserRouter([
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       DashboardRoute,
       ExampleRoute,
+      IPKGuidelineRoute,
     ],
   },
   {

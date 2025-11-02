@@ -7,7 +7,7 @@ import type {
   CreateExampleItemRequest,
   UpdateExampleItemRequest,
 } from "@/api/exampleApi";
-import { devLog } from "@/lib/devLOg";
+import { devLog } from "@/lib/devLog";
 import { toast } from "sonner";
 
 /* -------------------------------------------------
@@ -50,63 +50,65 @@ export function useExampleById(id: number) {
     enabled: !!id,
   });
 }
-
 /* -------------------------------------------------
    🟢 useCreateExampleItem — add new item
 ---------------------------------------------------*/
 export function useCreateExampleItem() {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
+    mutationKey: ["example", "create"], // ✅ Added key
     mutationFn: async (payload: CreateExampleItemRequest) => {
-      devLog("useCreateExampleItem", "📦 Creating new item...", payload);
-      const res = await exampleApi.postExampleItem(payload);
-      devLog("useCreateExampleItem", "✅ Created item:", res);
-      return res;
+      devLog("useCreateExampleItem", "📦 Creating new item...", payload)
+      const res = await exampleApi.postExampleItem(payload)
+      devLog("useCreateExampleItem", "✅ Created item:", res)
+      return res
     },
     onSuccess: () => {
-      toast.success("Item created successfully");
-      queryClient.invalidateQueries({ queryKey: EXAMPLE_KEYS.all });
+      toast.success("Item created successfully")
+      queryClient.invalidateQueries({ queryKey: EXAMPLE_KEYS.all })
     },
-  });
+  })
 }
 
 /* -------------------------------------------------
    🟡 useUpdateExampleItem — update existing item
 ---------------------------------------------------*/
 export function useUpdateExampleItem() {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
+    mutationKey: ["example", "update"], // ✅ Added key
     mutationFn: async (payload: UpdateExampleItemRequest) => {
-      devLog("useUpdateExampleItem", "✏️ Updating item...", payload);
-      const res = await exampleApi.putExampleItem(payload);
-      devLog("useUpdateExampleItem", "✅ Updated item:", res);
-      return res;
+      devLog("useUpdateExampleItem", "✏️ Updating item...", payload)
+      const res = await exampleApi.putExampleItem(payload)
+      devLog("useUpdateExampleItem", "✅ Updated item:", res)
+      return res
     },
     onSuccess: () => {
-      toast.success("Item updated successfully");
-      queryClient.invalidateQueries({ queryKey: EXAMPLE_KEYS.all });
+      toast.success("Item updated successfully")
+      queryClient.invalidateQueries({ queryKey: EXAMPLE_KEYS.all })
     },
-  });
+  })
 }
 
 /* -------------------------------------------------
    🔴 useDeleteExampleItem — remove item by ID
 ---------------------------------------------------*/
 export function useDeleteExampleItem() {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
+    mutationKey: ["example", "delete"], // ✅ Added key
     mutationFn: async (id: number) => {
-      devLog("useDeleteExampleItem", "🗑️ Deleting item with ID:", id);
-      const res = await exampleApi.deleteExampleItem(id);
-      devLog("useDeleteExampleItem", "✅ Item deleted:", res);
-      return res;
+      devLog("useDeleteExampleItem", "🗑️ Deleting item with ID:", id)
+      const res = await exampleApi.deleteExampleItem(id)
+      devLog("useDeleteExampleItem", "✅ Item deleted:", res)
+      return res
     },
     onSuccess: () => {
-      toast.success("Item deleted successfully");
-      queryClient.invalidateQueries({ queryKey: EXAMPLE_KEYS.all });
+      toast.success("Item deleted successfully")
+      queryClient.invalidateQueries({ queryKey: EXAMPLE_KEYS.all })
     },
-  });
+  })
 }

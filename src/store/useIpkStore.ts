@@ -1,4 +1,4 @@
-import { calculateIPK, IPKInput, IPKResult } from "@/utils/ipkCalculator";
+import { calculateIPK, type IPKInput,type IPKResult } from "@/utils/ipkCalculator";
 import { create } from "zustand";
 
 interface IpkState {

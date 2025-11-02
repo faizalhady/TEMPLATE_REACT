@@ -8,6 +8,7 @@ import {
   type QueryCacheNotifyEvent,
 } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import { getUserFriendlyErrorTitle } from "@/lib/getErrorMessage"
 import { toast } from "sonner"
 import axios from "axios"
 
@@ -54,14 +55,16 @@ export const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
       const message = extractErrorMessage(error)
-      showErrorToast("Query Error", message)
+      const title = getUserFriendlyErrorTitle(query.queryKey)
+      showErrorToast(title, message)
       console.error("❌ Query Error:", query.queryKey, message)
     },
   }),
   mutationCache: new MutationCache({
     onError: (error, _vars, _ctx, mutation) => {
       const message = extractErrorMessage(error)
-      showErrorToast("Mutation Error", message)
+      const title = getUserFriendlyErrorTitle(mutation.options.mutationKey)
+      showErrorToast(title, message)
       console.error("❌ Mutation Error:", mutation.options.mutationKey, message)
     },
   }),
@@ -73,6 +76,7 @@ export const queryClient = new QueryClient({
     },
   },
 })
+
 
 
 /* -------------------------------------------------
