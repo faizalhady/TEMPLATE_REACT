@@ -1,23 +1,29 @@
-// src/layouts/AppLayout.tsx
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbList
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
+  BreadcrumbList,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb"
+import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { Outlet } from "react-router-dom";
+} from "@/components/ui/sidebar"
+import { Toaster } from "@/components/ui/sonner"
+import { Outlet, useLocation } from "react-router-dom"
 
 export default function AppLayout() {
+  const location = useLocation()
+  const path = location.pathname.replace("/", "") || "Dashboard"
+
   return (
     <SidebarProvider>
+      {/* Sidebar */}
       <AppSidebar />
 
+      {/* Main inset area */}
       <SidebarInset className="flex flex-col h-screen">
         {/* Fixed Header */}
         <header className="bg-background flex h-16 shrink-0 items-center gap-2 border-b px-4">
@@ -26,11 +32,7 @@ export default function AppLayout() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                {/* <BreadcrumbLink href="#">IPK</BreadcrumbLink> */}
-              </BreadcrumbItem>
-              {/* <BreadcrumbSeparator className="hidden md:block" /> */}
-              <BreadcrumbItem>
-                {/* <BreadcrumbPage>Dashboard</BreadcrumbPage> */}
+                <BreadcrumbPage className="capitalize">{path}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -40,8 +42,10 @@ export default function AppLayout() {
         <div className="flex-1 overflow-y-auto p-4">
           <Outlet />
         </div>
-      </SidebarInset>
 
+        {/* Global notifications */}
+        <Toaster richColors position="top-right" />
+      </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }
